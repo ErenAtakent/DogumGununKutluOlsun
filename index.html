@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>İyi ki doğdun, Eylül — Seni Seviyorum</title>
+<style>
+  :root{
+    --bg:#120205; --deep:#2a0014; --rose:#ff3b6b; --soft-rose:#ff7a9a;
+    --gold:#ffd28a; --glass: rgba(255,255,255,0.04);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial; -webkit-font-smoothing:antialiased;}
+  body{
+    background:
+      radial-gradient(800px 400px at 10% 10%, rgba(255,210,138,0.06), transparent 10%),
+      radial-gradient(700px 350px at 90% 90%, rgba(255,122,154,0.04), transparent 10%),
+      linear-gradient(180deg,var(--bg),var(--deep));
+    color:#fff;overflow-x:hidden;
+    display:flex;align-items:center;justify-content:center;padding:20px;
+  }
+  .card{
+    width:100%;max-width:980px;border-radius:18px;padding:26px;
+    background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.06));
+    box-shadow:0 10px 40px rgba(0,0,0,0.6);
+    position:relative;overflow:hidden;
+  }
+  header{display:flex;gap:18px;align-items:center;flex-wrap:wrap;}
+  .photo{
+    width:120px;height:120px;border-radius:16px;flex:0 0 120px;
+    background:linear-gradient(135deg,var(--rose),var(--soft-rose));
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:#2a0014;
+    transform:rotate(-4deg);user-select:none;
+  }
+  h1{margin:0;font-size:28px;letter-spacing:0.4px;flex:1 1 auto;color:var(--rose);}
+  p.lead{margin:6px 0 0;font-size:15px;opacity:0.95;flex-basis:100%;}
+  .content{display:flex;gap:18px;margin-top:20px;align-items:stretch;flex-wrap:wrap;}
+  .left{flex:1 1 300px;padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.01),rgba(0,0,0,0.02));}
+  .right{width:320px;min-width:220px;padding:18px;border-radius:12px;background:var(--glass);display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:flex-start;}
+  .love{font-size:18px;line-height:1.5;color:#fff;margin:0 0 10px;text-shadow:0 6px 24px rgba(0,0,0,0.6);}
+  .signature{font-weight:700;color:var(--gold);margin-top:12px;user-select:none;}
+  .big-counter{font-size:2.8em;font-weight:700;text-align:center;color:var(--gold);text-shadow:0 2px 6px rgba(0,0,0,0.5);margin:20px 0 10px;user-select:none;}
+  .relationship-days{font-size:1.8em;color:var(--rose);font-weight:700;margin-bottom:20px;user-select:none;text-align:center;}
+  .message-slider{height:70px;font-size:16px;font-weight:600;text-align:center;color:#ffd28a;text-shadow:0 0 8px rgba(255,210,138,0.8);margin:10px 0 0;min-height:70px;}
+  .secret-message{
+    margin-top:15px;padding:15px;background:rgba(255,210,138,0.15);
+    border-radius:12px;font-size:15px;color:var(--gold);font-weight:600;
+    opacity:0; max-height:0; overflow:hidden; transition: all 0.5s ease;
+    user-select:none;text-align:center;
+  }
+  .secret-message.show{opacity:1; max-height:500px;}
+  .controls{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
+  button{border:0;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer;background:rgba(255,255,255,0.03);color:#fff;user-select:none;}
+  .btn-warm{background:linear-gradient(90deg,var(--rose),var(--gold));color:#2a0014;box-shadow:0 6px 18px rgba(0,0,0,0.4);}
+  footer{margin-top:14px;text-align:center;color:rgba(255,255,255,0.65);font-size:13px;user-select:none;}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <header>
+    <div class="photo">EYLÜLÜ</div>
+    <h1>İyi ki, iyi ki, iyi ki doğdun, Eylülüm ✨</h1>
+    <p class="lead">Sadece BugÜn Değil Herzaman İyi ki Varsın Güzel Sevgilim — Dünyanın En Güzel Kızının 18 Olmasına.</p>
+  </header>
+
+  <div class="big-counter" id="birthdayCountdown">Yükleniyor...</div>
+  <div class="relationship-days" id="relationshipDays">Yükleniyor...</div>
+
+  <div class="content">
+    <section class="left">
+      <p class="love">Eylül, sen benim başıma gelen en güzel şeysin. Her gün sana daha da aşık oluyorum. 💕</p>
+
+      <div class="message-slider" id="romanticMessages">
+        Seninle her an, sonsuz bir aşkın yeniden başlangıcı... ❤️
+      </div>
+
+      <button id="toggleSecret" class="btn-warm">Sana özel bir mesajım var 💌</button>
+      <div id="secretMessage" class="secret-message">
+  Benim güzel sevgilim artık hayatında yeni bir dönem başladı. Öncelikle bu zamanda da yanında olduğum için çok şanslıyım. 18 yaşındasın artık. Belki hayatında çok şey değişecek ama bazı şeyler asla değişmeyecek. Mesela sevgilin. Şaka bir yana, seninle geçirdiğim günler hayatımda ki en güzel günler gibi. Hayatına beni kabul ettiğin için dünyanın en şanslı insanı falanım. O şansı hiçbir zaman kaybetmeyeceğim güzel bebeğim. Bu doğum günü hayatındaki diğer doğum günlerinden daha farklı. Artık seninle hayalini kurduğumuz her şeyi yapabileceğiz (Doğum gününü senden çok ben bekliyordum.). Güzel meleğim, hayatının her anında yanında olacağımı söylememe gerek yok bence ama yine de söyleyeceğim; senin hayatından hiçbir zaman çıkmayacağım aşkım. Bu da demek oluyor ki her zaman sende benimle sevgili olmak zorundasın. Benim güzel sevgilim, tekrardan doğum günün kutlu olsun, iyi ki varsın, iyi ki doğdun ✨
+</div> 
+
+      <div class="controls">
+        <button id="yt" class="btn-warm">Senin Parçan İçin Tıkla ▶️</button>
+      </div>
+
+      <footer>— Sonsuza dek seninle güzel bebeğim, Eren</footer>
+    </section>
+
+    <aside class="right">
+      <div style="text-align:center">
+        <div style="font-size:42px">🎂</div>
+        <div style="margin-top:8px;font-weight:800;color:var(--gold)">15 Ağustos</div>
+        <div style="opacity:0.9;margin-top:6px;font-size:13px">Doğum Günün Kutlu Olsun Meleğim</div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script>
+// Mesaj slider
+const messages = [
+  "Dünyanın en güzel kızı artık 18 oldu... ❤️",
+  "İyi ki doğdun benim minik sevgilim 💕",
+  "Seni dünyalar kadar çok seviyorum 💖",
+  "Sen benim şansımsın 💖",
+  "Aşkın anlamını öğreten kelebek 💖"
+];
+let msgIndex = 0;
+setInterval(()=>{
+  msgIndex = (msgIndex + 1) % messages.length;
+  document.getElementById('romanticMessages').textContent = messages[msgIndex];
+}, 4000);
+
+// Doğum günü geri sayım
+function updateBirthdayCountdown(){
+  const now = new Date();
+  let nextBirthday = new Date(now.getFullYear(), 7, 15); // 0=Ocak, 7=Ağustos
+  if(now > nextBirthday){ nextBirthday.setFullYear(nextBirthday.getFullYear() + 1); }
+  const diff = nextBirthday - now;
+  const days = Math.floor(diff / (1000*60*60*24));
+  const hours = Math.floor((diff / (1000*60*60)) % 24);
+  const mins = Math.floor((diff / (1000*60)) % 60);
+  const secs = Math.floor((diff / 1000) % 60);
+  document.getElementById("birthdayCountdown").textContent =
+    `${days} gün, ${hours} saat, ${mins} dakika, ${secs} saniye kaldı`;
+}
+setInterval(updateBirthdayCountdown, 1000);
+updateBirthdayCountdown();
+
+// İlişki günü
+function updateRelationshipDays(){
+  const start = new Date(2025, 2, 3); // 3 Mart 2025
+  const now = new Date();
+  const diff = now - start;
+  const days = Math.floor(diff / (1000*60*60*24));
+  document.getElementById("relationshipDays").textContent =
+    `Birlikte ${days} gündür sevgiliyiz ❤️`;
+}
+updateRelationshipDays();
+
+// Gizli mesaj
+document.getElementById('toggleSecret').addEventListener('click',()=>{
+  const sm = document.getElementById('secretMessage');
+  sm.classList.toggle('show');
+});
+
+// YouTube butonu
+document.getElementById('yt').addEventListener('click', () => {
+  window.open('https://www.youtube.com/watch?v=VIDEO_ID', '_blank'); // VIDEO_ID kısmını kendi şarkınla değiştir
+});
+</script>
+
+</body>
+</html>
